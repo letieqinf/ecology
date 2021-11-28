@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+    <head>
+        <title>
+            Экология
+        </title>
+        <meta charset="UTF-8">
+        {% block page_css %}
+        {% endblock %}
+        {% include 'wrappers/links.html' %}
+    </head>
+    <body>
+        <header class="header">
+            <a href="{{ request.META.HTTP_REFERER }}">
+                <i class="fa fa-angle-left fa-2x fa-fw back-arrow" aria-hidden="true"></i>
+            </a>
+            <h1>
+                {% block header %}
+                {% endblock %}
+            </h1>
+        </header>
+        <article>
+            <div id="title-screen" class="ttl-scr-quiz">
+                <h2>Описание</h2>
+                <div class="test-info">
+                    <p>{{ quiz.topic }}</p>
+                    <hr class="info-hr">
+                    <p>
+                        <span>Вопросы: </span>
+                        <span>{{ quiz.number_of_questions }}</span>
+                    </p>
+                    <p>
+                        <span>Уровень: </span>
+                        <span>{{ quiz.difficulty }}</span>
+                    </p>
+                </div>
+                <a href="#" 
+                    onclick="document.getElementById('title-screen').classList.add('hidden-block');
+                    document.getElementById('quiz-box').classList.remove('hidden-block');
+                    document.getElementById('quiz-form-button').classList.remove('hidden-block')">
+                    <div class="button">
+                        <p>Начать</p>
+                    </div>
+                </a>
+            </div>
+            {% block article %}
+            {% endblock %}
+            <div id="results-form" class="outro-screen hidden-block">
+                <h2>Результаты</h2>
+                <div id="qr-info" class="test-info"></div>
+                <div id="qr-results" class="results"></div>
+                <a href="{% url 'profile' %}">
+                    <div class="button return-btn">
+                        <p>Вернуться</p>
+                    </div>
+                </a>
+            </div>
+        </article>
+        {% block additional %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,177 @@
+{% extends 'wrappers/quiz_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+{% endblock %}
+
+{% block header %}
+    {{ quiz.name }}
+{% endblock %}
+
+{% block article %}
+    <form id="quiz-form" class="qb-form">
+        {% csrf_token %}
+        <div id='quiz-box' class='hidden-block'></div>
+        <button type="submit" id="quiz-form-button" class="qb-btn hidden-block">Завершить</button>
+    </form>
+{% endblock %}
+
+{% block additional %}
+    <script>
+        const url = location.protocol + '//' + location.host + location.pathname;
+        let data;
+
+        $.ajax({
+            type: 'GET',
+            url: `${url}data`,
+            success: function(response) {
+                data = response.data;
+                console.log(data);
+                let index = 1;
+
+                data.forEach(el => {
+                    for (const [question, content] of Object.entries(el))
+                    {
+                        let answers = '<div class="answer-list">';
+                        for (answer of content['answers'])
+                        {
+                            answers += `
+                                <div class="item-wrapper">
+                                    <input type="checkbox" id="cb-${index}" class="ans" name="${question}" value="${answer}">
+                                    <label for="cb-${index}" class="test-item">
+                                        <p>${answer}</p>    
+                                    </label>
+                                </div>
+                            `;
+                            index++;
+                        }
+                        answers += '</div>'
+
+                        if (content['images'].length != 0)
+                        {
+                            document.getElementById('quiz-box').innerHTML += `
+                            <div class="test-info box-element">
+                                <p>${question}</p>
+                                <div class="image-box">
+                                    <div class="image">
+                                        <img src="{% static 'img/quizes/' %}${content['images'][0]}" alt="">
+                                    </div>
+                                    <div class="image">
+                                        <img src="{% static 'img/quizes/' %}${content['images'][1]}" alt="">
+                                    </div>
+                                </div>
+                                ${answers}
+                            </div>
+                            `;
+                        }
+                        else
+                        {
+                            document.getElementById('quiz-box').innerHTML += `
+                            <div class="test-info box-element">
+                                <p>${question}</p>
+                                ${answers}
+                            </div>
+                            `;
+                        }
+                    }
+                });
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+
+        const quizForm = document.getElementById('quiz-form');
+        const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+        const SendData = () => {
+            const elements = [...document.getElementsByClassName('ans')];
+            const data = {};
+            data['csrfmiddlewaretoken'] = csrf[0].value;
+            elements.forEach(el => {
+                if (!data[el.name])
+                {
+                    data[el.name] = []
+                }
+
+                if (el.checked) 
+                {
+                    data[el.name].push(el.value)
+                }
+                else
+                {
+                    data[el.name].push(null)
+                }
+            })
+
+            console.log(data);
+
+            $.ajax({
+                type: 'POST',
+                url: `${url}save/`,
+                data: data,
+                traditional: true,
+                success: function(response) {
+                    const data = response.data;
+                    quizForm.classList.add('hidden-block');
+
+                    var keys = []
+                    for (var key in data['correct'])
+                    {
+                        keys.push(key)
+                    }
+
+                    var res = document.getElementById('qr-results');
+
+                    for (var i = 0; i < keys.length; i++)
+                    {
+                        res.innerHTML += `
+                            <div id="answer-${i}" class="test-info">
+                                <p class="res-q">${keys[i]}</p>
+                                <p class="res-ca">
+                                    <span class="ca-hdr">Верный ответ: </span>
+                                    <span>${data['correct'][keys[i]].join(', ')}</span>
+                                </p>
+                            </div>
+                        `;
+
+                        if (data['desc'].length != 0)
+                        {
+                            document.getElementById('answer-' + i).innerHTML += `<p class="res-desc">${data['desc'][i]}</p>`;
+                        }
+
+                        if (data['is_correct'][i])
+                        {
+                            document.getElementById('answer-' + i).style.backgroundColor = '#ace7bb8a';
+                        }
+                        else
+                        {
+                            document.getElementById('answer-' + i).style.backgroundColor = '#e7d3d38a';
+                        }
+                    }
+
+                    res = document.getElementById('qr-info');
+                    res.innerHTML += `
+                        <p>
+                            <span>Вы заработали ${data['score']}</span>
+                            <i class="fa fa-leaf" aria-hidden="true"></i>
+                        </p>
+                    `;
+                    
+                    res = document.getElementById('results-form');
+                    res.classList.remove('hidden-block');
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        }
+
+        quizForm.addEventListener('submit', e => {
+            e.preventDefault();
+            SendData();
+            window.scrollTo(0, 0);
+        })
+    </script>
+{% endblock %}
