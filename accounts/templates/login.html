@@ -1,0 +1,52 @@
+{% extends 'wrappers/auth_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block header %}
+    Авторизация
+{% endblock %}
+
+{% block article %}
+    <div class="form login">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="elements-container">
+                <div class="form-element">
+                    <div class="icon">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <input type="text" name="username" placeholder="Username..." id="id_username">
+                </div>
+                <div class="form-element last-form-element">
+                    <div class="icon">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    </div>
+                    <input type="password" name="password" placeholder="Password..." id="id_password">
+                </div>
+            </div>
+            <input type="submit" name="Login" value="Войти" class="submit">
+
+            {% if messages %}
+            <div class="errors">
+                    {% for error in messages %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+            <p class="to-register">
+                Нет аккаунта?
+                <a href="{% url 'register' %}">Создать</a>
+            </p>
+        </form>
+    </div>
+{% endblock %}
+
+{% block additional %}
+    <script>
+
+    </script>
+{% endblock %}

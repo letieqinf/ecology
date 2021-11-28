@@ -1,0 +1,114 @@
+{% extends 'wrappers/profile_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block header %}
+    Профиль
+{% endblock %}
+
+{% block article %}
+    <h2>Карточка пользователя</h2>
+    <div class="user-card">
+        <div class="card-info">
+            <p>
+                <span class="card-hdr">Имя: </span>
+                <span>{{ user.get_username }}</span>
+            </p>
+            <p>
+                <span class="card-hdr">Листики: </span>
+                <span>
+                    <span id="total-score"></span> 
+                    <i class="fa fa-leaf" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+        <a href="{% url 'logout' %}">
+            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+        </a>
+    </div>
+    <p class="add-inf-lf">
+        Проходите тесты, чтобы получить больше листиков
+    </p>
+    <h2>Тесты</h2>
+    {% for list in quiz %}
+        <div class="test-card">
+            <div class="flex-area">
+                <div class="test-card-box">
+                    <p class="test-card-hdr">{{ list.fields.name }}</p>
+                    <p class="test-card-info">{{ list.fields.topic }}</p>
+                    <p class="test-card-level">
+                        <span>Уровень: </span>
+                        <span>{{ list.fields.difficulty }}</span>
+                    </p>
+                </div>
+                <a href="{% url 'quizes' %}{{ list.pk }}" class="test-link">
+                    <i class="fa fa-play" style="font-size: 24px;" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="prg-info">
+                <div class="progress-bar">
+                    <div id="line-{{ list.pk }}" class="progress-line"></div>
+                </div>
+                <p class="progress-info">
+                    <span id="prg-score-{{ list.pk }}"></span>
+                    <span class="cnt-amt">/ {{ list.fields.number_of_questions }}</span>
+                    <i class="fa fa-leaf" aria-hidden="true"></i>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block additional %}
+    {{ quiz|json_script:'quiz_styles' }}
+    {{ results|json_script:'result_container' }}
+    <script type="text/javascript">
+        let user_id = Number("{{ user.id }}");
+        let data_quiz = JSON.parse(document.getElementById('quiz_styles').textContent);
+        let data_result = JSON.parse(document.getElementById('result_container').textContent);
+
+        let total_score = 0;
+        for (let i = 0; i < data_result.length; i++)
+        {
+            if (data_result[i]['fields']['user'] == user_id)
+            {
+                total_score += data_result[i]['fields']['score'];
+            }
+        }
+        document.getElementById("total-score").innerHTML = total_score;
+
+        for (let i = 0; i < data_quiz.length; i++)
+        {
+            let result = 0;
+            let pk = data_quiz[i]['pk'];
+
+            for (let j = 0; j < data_result.length; j++)
+            {
+                if (data_result[j]['fields']['quiz'] == pk)
+                {
+                    if (data_result[j]['fields']['user'] == user_id)
+                    {
+                        if (result < data_result[j]['fields']['score'])
+                        {
+                            result = data_result[j]['fields']['score'];
+                        }
+                    }
+                }
+            }
+
+            document.getElementById("prg-score-" + pk).innerHTML = result;
+
+            let width = Math.round(result / data_quiz[i]['fields']['number_of_questions'] * 100);
+            let to_post = document.getElementById("line-" + pk);
+            to_post.style.width = width + '%';
+            if (width == 100)
+            {
+                to_post.style.borderTopRightRadius = '10px';
+                to_post.style.borderBottomRightRadius = '10px';
+            }
+        }
+    </script>
+{% endblock %}

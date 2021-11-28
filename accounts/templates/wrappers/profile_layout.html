@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+    <head>
+        <title>
+            Экология
+        </title>
+        <meta charset="UTF-8">
+        {% block page_css %}
+        {% endblock %}
+        {% include 'wrappers/links.html' %}
+    </head>
+    <body>
+        <header class="header">
+            <a href="{% url 'index' %}">
+                <i class="fa fa-angle-left fa-2x fa-fw back-arrow" aria-hidden="true"></i>
+            </a>
+            <h1>
+                {% block header %}
+                {% endblock %}
+            </h1>
+        </header>
+        <article>
+            {% block article %}
+            {% endblock %}
+        </article>
+        {% block additional %}
+        {% endblock %}
+    </body>
+</html>
