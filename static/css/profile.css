@@ -1,0 +1,141 @@
+article
+{
+    text-align: center;
+}
+
+.user-card
+{
+    text-align: left;
+
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(122,122,122,0.2);
+
+    padding: 20px;
+    margin: 20px 40px 5px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-hdr
+{
+    font-weight: 500;
+}
+
+.add-inf-lf
+{
+    color: rgba(122, 87, 209, 0.5);
+    font-size: 12px;
+    margin-bottom: 40px;
+}
+
+.user-card p:not(:last-child)
+{
+    margin-bottom: 10px;
+}
+
+.fa-leaf
+{
+    color: green;
+}
+
+.user-card a
+{
+    color: #7A57D1;
+}
+
+.test-card
+{
+    text-align: left;
+
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(122,122,122,0.2);
+    background: linear-gradient(89deg, rgba(89, 164, 242, 0.9) 0%, rgba(91, 231, 196, 0.85) 0.01%, rgba(89, 164, 242, 0.9) 98.59%);
+
+    padding: 20px;
+    margin: 20px 40px 5px 40px;
+}
+
+.flex-area
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.test-card-box
+{
+    width: 70%;
+}
+
+.test-card-box p
+{
+    color: white;
+}
+
+p.test-card-hdr
+{
+    font-weight: 500;
+}
+
+.test-card-info
+{
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.test-card-level
+{
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.test-card-level span:first-child
+{
+    color: green;
+    font-weight: 800;
+}
+
+.test-link i
+{
+    color: white;
+    margin-right: 20px;
+}
+
+.prg-info
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.progress-bar
+{
+    width: 180px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(122,122,122,0.1);
+}
+
+.progress-info span
+{
+    color: white;
+    font-size: 14px;
+}
+
+.progress-line
+{
+    width: 0;
+    height: 10px;
+    background-color: green;
+    border-radius: 10px 0 0 10px;
+}
+
+.cnt-amt
+{
+    font-weight: 800;
+}

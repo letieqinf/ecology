@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3
+{
+    font-family: 'Manrope', sans-serif;
+}
+
+h1
+{
+    font-size: 16px;
+    color: #59A4F2;
+}
+
+h2
+{
+    font-size: 20px;
+    color: #7A57D1;
+    letter-spacing: 0.05em;
+}
+
+h3
+{
+    font-size: 18px;
+    color: #7A57D1;
+    letter-spacing: 0.05em;
+}
+
+p
+{
+    font-family: 'Roboto', sans-serif;
+    color: #7A57D1;
+    font-size: 16px;
+}

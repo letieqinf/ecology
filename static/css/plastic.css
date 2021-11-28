@@ -1,0 +1,66 @@
+.text-field
+{
+    margin: 0 40px;
+}
+
+.text-field h3
+{
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+.text-field-content p
+{
+    text-align: center;
+    margin: 0 10px;
+}
+
+.text-field-content p:last-child
+{
+    margin: 5px 10px 20px 10px;
+}
+.scroll-cover h2
+{
+    text-align: center;
+}
+
+.scroll-content-wrapper
+{
+    overflow-x: scroll;
+    margin: 20px 20px 32px 20px;
+}
+
+.scroll-content
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.scroll-object
+{
+    position: relative;
+
+    width: 283px;
+    height: 211px;
+    background: radial-gradient(50.24% 50.24% at 48.76% 49.76%, rgba(72, 195, 240, 0.51) 0%, rgba(72, 195, 240, 0.51) 0%, rgba(89, 164, 242, 0.714) 100%);
+    border-radius: 10px;
+
+    margin-right: 20px;
+}
+
+.scroll-object:last-child
+{
+    margin-right: 0;
+}
+
+.scroll-object img 
+{
+    position: absolute;
+    width: 40%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

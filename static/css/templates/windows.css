@@ -1,0 +1,62 @@
+.fixed
+{
+    display: fixed;
+    overflow: hidden;
+    width: 100%;
+}
+
+.window-wrapper
+{
+    display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-window
+{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 255px;
+    height: 310px;
+
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.window-wrapper:target
+{
+    display: block;
+}
+
+.window-text
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+    height: auto;
+}
+
+.window-text p
+{
+    margin-bottom: 20px;
+}
+
+.window-text p:last-child
+{
+    margin-bottom: 0;
+}

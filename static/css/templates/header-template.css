@@ -1,0 +1,25 @@
+.header
+{
+    position: relative;
+
+    padding: 47px 30px;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.back-arrow
+{
+    position: absolute;
+    transform: translate(-20px, -50%);
+    top: 50%;
+
+    color: #59A4F2;
+}

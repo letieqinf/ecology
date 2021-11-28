@@ -1,0 +1,37 @@
+article
+{
+    margin-bottom: 90px;
+}
+
+.content-box
+{
+    text-align: center;
+}
+
+.content
+{
+    position: relative;
+
+    background: linear-gradient(89deg, rgba(89, 164, 242, 0.9) 0%, rgba(91, 231, 196, 0.85) 0.01%, rgba(89, 164, 242, 0.9) 98.59%);
+    border-radius: 10px;
+
+    margin: 20px 56px 31px 56px;
+    padding: 13px;
+}
+
+.par-wrapper
+{
+    margin: 16px;
+}
+
+.par-wrapper p
+{
+    color: white;
+    margin-bottom: 5px;
+}
+
+.par-wrapper .paragraph-last-child
+{
+    font-size: 12px;
+    margin: 31px 0 15px 0;
+}
