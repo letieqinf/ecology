@@ -1,0 +1,50 @@
+{% extends 'wrappers/map_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+{% block header %}
+    Места сбора мусора
+{% endblock %}
+
+{% block article %}
+<div class="map-container">
+    <div id='map' style='width: 100%; height: 80vh;'></div>
+</div>
+{% endblock %}
+
+{% block additional %}
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGV0aWVxaW5mIiwiYSI6ImNrd2ZrdXA5ajAwMHkycG1kODdhbnhsdXYifQ.4kPseRqySKtPDkBahYZ7bg';
+
+    navigator.geolocation.getCurrentPosition(position => {
+        let coordinates = [];
+        coordinates.push(position['coords']['longitude']);
+        coordinates.push(position['coords']['latitude']);
+
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: coordinates,
+        zoom: 9
+        });
+    }, error => {
+        console.error(error)
+
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [56.4977, 84.9744],
+        zoom: 11
+        });
+    }, {
+        timeout: 1000,
+        maximumAge: 10000,
+        enableHighAccuracy: true
+    })
+</script>
+{% endblock %}

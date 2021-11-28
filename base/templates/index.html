@@ -1,0 +1,45 @@
+{% extends 'wrappers/layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
+{% endblock %}
+
+{% block header %}
+    Привет,
+    {% if user.is_authenticated %}
+        {{ user.get_username }}
+    {% else %}
+        друг
+    {% endif %}
+{% endblock %}
+
+{% block article %}
+    <div class="text-field">
+        <p>
+            В век бесконечного потребления мы столкнулись с глобальной проблемой ежеминутно преумножающегося мусора!
+        </p>
+        <p>
+            Сегодня свалки оказывают негативное влияние на окружающую среду.
+            И мы предлагаем тебе попробовать переработку мусора!
+        </p>
+    </div>
+    <div class="buttons">
+        <a href="{% url 'profile' %}">
+            <div class="button">
+                <p>Профиль</p>
+            </div>
+        </a>
+        <hr class="hr">
+        <a href="{% url 'list' %}">
+            <div class="button">
+                <p>Список того, что можно переработать</p>
+            </div>
+        </a>
+        <a href="{% url 'map' %}">
+            <div class="button">
+                <p>Места сбора отходов</p>
+            </div>
+        </a>
+    </div>
+{% endblock %}
