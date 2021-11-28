@@ -84,10 +84,6 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-database_update = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(database_update)
-
 
 # Password validation
 
