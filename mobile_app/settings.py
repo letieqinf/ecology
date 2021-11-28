@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-$&w%r9u+xs7#t*o-zy#^pen76&)s5w$vi*_ffab^!j99i9vx)t
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "djecology.herokuapp.com",
+    "ecology-app.herokuapp.com",
     "127.0.0.1",
     "localhost",
 ]
