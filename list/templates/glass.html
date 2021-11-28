@@ -1,0 +1,45 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates/info-pages.css' %}">
+{% endblock %}
+
+{% block header %}
+    Стекло
+{% endblock %}
+
+{% block url %}
+    {% url 'list' %}
+{% endblock %}
+
+{% block article %}
+    <div class="content-box available">
+        <h2>
+            Что можно сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>бутылки</p>
+                <p>банки</p>
+                <p>разбитое стекло</p>
+                <p>(уточняйте у приёмщика)</p>
+            </div>
+        </div>
+    </div>
+    <div class="content-box not-available">
+        <h2>
+            Что нельзя сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>лампочки накаливания</p>
+                <p>крышки от сковродок и кастрюль</p>
+                <p>оптическое стекло</p>
+                <p>хрусталь</p>
+                <p>градусники</p>
+                <p>зеркала</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

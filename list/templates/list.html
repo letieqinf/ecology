@@ -1,0 +1,62 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/list.css' %}">
+{% endblock %}
+
+{% block header %}
+    Список
+{% endblock %}
+
+{% block url %}
+    {% url 'index' %}
+{% endblock %}
+
+{% block article %}
+    <div class="text-field">
+        <p>
+            Ниже приведён список возможных перерабатываемых отходов. В каждой категории есть исключения.
+        </p>
+        <p>
+            Кликнув на категорию, вы можете узнать точный список разрешённых и запрещённых продуктов
+        </p>
+    </div>
+    <div class="buttons">
+        <a href="{% url 'mac' %}">
+            <div class="button">
+                <p>Макулатура</p>
+            </div>
+        </a>
+        <a href="{% url 'metal' %}">
+            <div class="button">
+                <p>Металл</p>
+            </div>
+        </a>
+        <a href="{% url 'glass' %}">
+            <div class="button">
+                <p>Стекло</p>
+            </div>
+        </a>
+        <a href="{% url 'plastic' %}">
+            <div class="button">
+                <p>Пластик</p>
+            </div>
+        </a>
+        <a href="{% url 'box' %}">
+            <div class="button">
+                <p>Тетрапак</p>
+            </div>
+        </a>
+        <a href="{% url 'wastes' %}">
+            <div class="button">
+                <p>Опасные отходы</p>
+            </div>
+        </a>
+        <a href="{% url 'clothes' %}">
+            <div class="button">
+                <p>Одежда</p>
+            </div>
+        </a>
+    </div>
+{% endblock %}

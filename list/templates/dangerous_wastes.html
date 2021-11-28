@@ -1,0 +1,35 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates/info-pages.css' %}">
+{% endblock %}
+
+{% block header %}
+    Опасные отходы
+{% endblock %}
+
+{% block url %}
+    {% url 'list' %}
+{% endblock %}
+
+{% block article %}
+    <div class="content-box available">
+        <h2>
+            Что можно сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>батарейки</p>
+                <p>аккумуляторы</p>
+                <p>ртутные лампы/градусники</p>
+                <p>электрохлам</p>
+                <p>просроченные лекарства</p>
+                <p>шины</p>
+                <p class="paragraph-last-child">
+                    * пункты приёма опасных отходов есть не во всех городах
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

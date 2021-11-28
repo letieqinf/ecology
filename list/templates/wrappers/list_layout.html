@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+    <head>
+        <title>
+            Экология
+        </title>
+        <meta charset="UTF-8">
+        {% block page_css %}
+        {% endblock %}
+        {% include 'wrappers/links.html' %}
+    </head>
+    <body>
+        <header class="header">
+            <a href="{% block url %}{% endblock %}">
+                <i class="fa fa-angle-left fa-2x fa-fw back-arrow" aria-hidden="true"></i>
+            </a>
+            <h1>
+                {% block header %}
+                {% endblock %}
+            </h1>
+        </header>
+        <article>
+            {% block article %}
+            {% endblock %}
+        </article>
+        <section class="ftr-menu-wrapper" id="footer-menu">
+            <div class="ftr-menu">
+                <a href="{% url 'profile' %}" class="menu-btn first-menu-btn">
+                    <i class="fa fa-user-o fa-2x fa-fw user-profile" aria-hidden="true"></i>
+                </a>
+                <a href="{% url 'index' %}" class="menu-btn second-menu-btn">
+                    <i class="fa fa-home fa-fw user-home" style="font-size: 40px" aria-hidden="true"></i>
+                </a>
+            </div>
+        </section>
+        <script>
+            var prevScrollpos = window.pageYOffset;
+                window.onscroll = function() {
+                    var currentScrollPos = window.pageYOffset;
+                    if (prevScrollpos > currentScrollPos) {
+                        document.getElementById("footer-menu").classList.remove("hidden-menu")
+                    } else {
+                        document.getElementById("footer-menu").classList.add("hidden-menu")
+                    }
+                    prevScrollpos = currentScrollPos;
+                    }
+        </script>
+        {% block additional %}
+        {% endblock %}
+    </body>
+</html>

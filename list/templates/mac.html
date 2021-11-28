@@ -1,0 +1,62 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates/info-pages.css' %}">
+{% endblock %}
+
+{% block header %}
+    Макулатура
+{% endblock %}
+
+{% block url %}
+    {% url 'list' %}
+{% endblock %}
+
+{% block article %}
+    <div class="content-box available">
+        <h2>
+            Что можно сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>
+                    незагрязнённую бумагу
+                </p>
+                <p>
+                    картон
+                </p>
+                <p class="paragraph-last-child">
+                    * следует удалить весь скотч, наклейки и скобы
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="content-box not-available">
+        <h2>
+            Что нельзя сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>
+                    чеки
+                </p>
+                <p>
+                    туалетную бумагу
+                </p>
+                <p>
+                    салфетки
+                </p>
+                <p>
+                    одноразовые стаканчики от кофе
+                </p>
+                <p>
+                    пачки из-под сигарет
+                </p>
+                <p>
+                    картонные подложки из-под яиц
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

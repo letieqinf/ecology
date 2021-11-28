@@ -1,0 +1,140 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/plastic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templates/windows.css' %}">
+{% endblock %}
+
+{% block header %}
+    Одежда
+{% endblock %}
+
+{% block url %}
+    {% url 'list' %}
+{% endblock %}
+
+{% block article %}
+    <div class="text-field">
+        <h3>Существует 7 видов пластика</h3>
+        <div class="text-field-content">
+            <p>
+                Цифра внутри треугольника на упаковке помогает понять, какой это вид упаковки и можно ли его сдать на переработку.
+            </p>
+            <p>
+                Буквенная аббревиатура под треугольникам обозначает тип материала, например PP (полипропилен) или GL (стекло).
+            </p>
+        </div>
+    </div>
+    <div class="main-content-cover">
+        <div class="scroll-cover">
+            <h2>
+                Что можно сдать
+            </h2>
+            <div class="scroll-content-wrapper" align="center">
+                <div class="scroll-content">
+                    <div class="scroll-object" onclick="location.href='#ret'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/ret.png' %}" alt="">
+                    </div>
+                    <div class="scroll-object" onclick="location.href='#rehd'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/rehd.png' %}" alt="">
+                    </div>
+                    <div class="scroll-object" onclick="location.href='#reld'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/reld.png' %}" alt="">
+                    </div>
+                    <div class="scroll-object" onclick="location.href='#pp'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/pp.png' %}" alt="">
+                    </div>
+                    <div class="scroll-object" onclick="location.href='#ps'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/ps.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-cover">
+            <h2>
+                Что нельзя сдать
+            </h2>
+            <div class="scroll-content-wrapper" align="center">
+                <div class="scroll-content">
+                    <div class="scroll-object" onclick="location.href='#pvc'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/pvc.png' %}" alt="">
+                    </div>
+                    <div class="scroll-object" onclick="location.href='#o'; document.body.classList.add('fixed')">
+                        <img src="{% static 'img/o.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional %}
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="ret" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>бутылки из-под воды и других напитков</p>
+                <p>упаковка для пищевых продуктов</p>
+                <p>баночки из-под шампуней и другой косметики</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="rehd" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>упаковка из-под бытовой химии</p>
+                <p>канистры</p>
+                <p>баночки из-под питьевого йогурта</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="reld" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>прозрачная плёнка</p>
+                <p>пакеты</p>
+                <p>мягкие пакеты из-под молочной продукции/порошка</p>
+                <p>упаковка из-под косметических изделий</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="pp" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>упаковка из-под йогуртов/творога/других пищевых продуктов</p>
+                <p>одноразовые стаканчики</p>
+                <p>контейнеры для еды</p>
+                <p>ящики</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="ps" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>упаковка из-под йогуртов/ сметаны/ других продуктов</p>
+                <p>подложки из-под яиц    (без наклейки)</p>
+                <p>подложки из-под овощей одноразовые контейнеры для обедов с собой</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="pvc" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>упаковка из-под кондитерских изделий</p>
+                <p>упаковка для сыра</p>
+                <p>упаковка для кофе</p>
+                <p>упаковка для корма для животных</p>
+            </div>
+        </div>
+    </div>
+    <div onclick="location.href='#'; document.body.classList.remove('fixed');" id="o" class="window-wrapper">
+        <div class="popup-window">
+            <div class="window-text">
+                <p>тюбики из-под зубной пасты</p>
+                <p>оконные рамы</p>
+                <p>блистеры</p>
+                <p>упаковки из-под таблеток</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

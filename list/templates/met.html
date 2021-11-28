@@ -1,0 +1,50 @@
+{% extends 'wrappers/list_layout.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates/info-pages.css' %}">
+{% endblock %}
+
+{% block header %}
+    Металл
+{% endblock %}
+
+{% block url %}
+    {% url 'list' %}
+{% endblock %}
+
+{% block article %}
+    <div class="content-box available">
+        <h2>
+            Что можно сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>
+                    консервные банки
+                </p>
+                <p>
+                    алюминиевые банки из-под напитков
+                </p>
+                <p>
+                    крышки из-под стеклянных банок
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="content-box not-available">
+        <h2>
+            Что нельзя сдать
+        </h2>
+        <div class="content">
+            <div class="par-wrapper">
+                <p>
+                    радиоактивные материалы
+                </p>
+                <p class="paragraph-last-child">* баллончики из-под аэрозолей и газовые 
+                    баллоны принимаются не везде
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
