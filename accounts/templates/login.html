@@ -1,52 +1,55 @@
-{% extends 'wrappers/auth_layout.html' %}
-
-{% block page_css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-{% endblock %}
-
-{% block header %}
-    Авторизация
-{% endblock %}
-
-{% block article %}
-    <div class="form login">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="elements-container">
-                <div class="form-element">
-                    <div class="icon">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+    <head>
+        <title>
+            Экология
+        </title>
+        <meta charset="UTF-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        {% include 'wrappers/links.html' %}
+    </head>
+    <body>
+        <header class="header">
+            <a href="{{ request.META.HTTP_REFERER }}">
+                <i class="fa fa-angle-left fa-2x fa-fw back-arrow" aria-hidden="true"></i>
+            </a>
+            <h1>
+                Авторизация
+            </h1>
+        </header>
+        <div class="form login">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="elements-container">
+                    <div class="form-element">
+                        <div class="icon">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </div>
+                        <input type="text" name="username" placeholder="Username..." id="id_username">
                     </div>
-                    <input type="text" name="username" placeholder="Username..." id="id_username">
-                </div>
-                <div class="form-element last-form-element">
-                    <div class="icon">
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    <div class="form-element last-form-element">
+                        <div class="icon">
+                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                        </div>
+                        <input type="password" name="password" placeholder="Password..." id="id_password">
                     </div>
-                    <input type="password" name="password" placeholder="Password..." id="id_password">
                 </div>
-            </div>
-            <input type="submit" name="Login" value="Войти" class="submit">
-
-            {% if messages %}
-            <div class="errors">
-                    {% for error in messages %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-            </div>
-            {% endif %}
-
-            <p class="to-register">
-                Нет аккаунта?
-                <a href="{% url 'register' %}">Создать</a>
-            </p>
-        </form>
-    </div>
-{% endblock %}
-
-{% block additional %}
-    <script>
-
-    </script>
-{% endblock %}
+                <input type="submit" name="Login" value="Войти" class="submit">
+    
+                {% if messages %}
+                <div class="errors">
+                        {% for error in messages %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+    
+                <p class="to-register">
+                    Нет аккаунта?
+                    <a href="{% url 'register' %}">Создать</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>
