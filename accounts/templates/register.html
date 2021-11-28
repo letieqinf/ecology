@@ -1,74 +1,82 @@
-{% extends 'wrappers/auth_layout.html' %}
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+    <head>
+        <title>
+            Экология
+        </title>
+        <meta charset="UTF-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/register.css' %}">
+        {% include 'wrappers/links.html' %}
+    </head>
+    <body>
+        <header class="header">
+            <a href="{{ request.META.HTTP_REFERER }}">
+                <i class="fa fa-angle-left fa-2x fa-fw back-arrow" aria-hidden="true"></i>
+            </a>
+            <h1>
+                Регистрация
+            </h1>
+        </header>
+        <article>
+            <div class="form register">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="elements-container">
+                        <div class="form-element first-form-element">
+                            <div class="icon">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </div>
+                            {{ form.username }}
+                        </div>
+                        <div class="form-element">
+                            <div class="icon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-element">
+                            <div class="icon">
+                                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                            </div>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="form-element last-form-element">
+                            <div class="icon">
+                                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                            </div>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    <input type="submit" name="Register" value="Зарегестрироваться" class="submit">
 
-{% block page_css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
-{% endblock %}
+                    {% if errors %}
+                    <div class="errors">
+                            {% for error in errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
 
-{% block header %}
-    Регистрация
-{% endblock %}
-
-{% block article %}
-    <div class="form register">
-        <form method="POST" action="">
-            {% csrf_token %}
-            <div class="elements-container">
-                <div class="form-element first-form-element">
-                    <div class="icon">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    </div>
-                    {{ form.username }}
-                </div>
-                <div class="form-element">
-                    <div class="icon">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </div>
-                    {{ form.email }}
-                </div>
-                <div class="form-element">
-                    <div class="icon">
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                    </div>
-                    {{ form.password1 }}
-                </div>
-                <div class="form-element last-form-element">
-                    <div class="icon">
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                    </div>
-                    {{ form.password2 }}
-                </div>
+                    <p class="to-login">
+                        Есть аккаунт? 
+                        <a href="{% url 'login' %}">Войти</a>
+                    </p>
+                </form>
             </div>
-            <input type="submit" name="Register" value="Зарегестрироваться" class="submit">
+        </article>
+        <script>
+            let username = document.getElementById("id_username");
+            username.setAttribute("placeholder", "Username...");
 
-            {% if errors %}
-            <div class="errors">
-                    {% for error in errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-            </div>
-            {% endif %}
+            let email = document.getElementById("id_email");
+            email.setAttribute("placeholder", "Email...");
 
-            <p class="to-login">
-                Есть аккаунт? 
-                <a href="{% url 'login' %}">Войти</a>
-            </p>
-        </form>
-    </div>
-{% endblock %}
+            let password1 = document.getElementById("id_password1");
+            password1.setAttribute("placeholder", "Password...");
 
-{% block additional %}
-    <script>
-        let username = document.getElementById("id_username");
-        username.setAttribute("placeholder", "Username...");
-
-        let email = document.getElementById("id_email");
-        email.setAttribute("placeholder", "Email...");
-
-        let password1 = document.getElementById("id_password1");
-        password1.setAttribute("placeholder", "Password...");
-
-        let password2 = document.getElementById("id_password2");
-        password2.setAttribute("placeholder", "Enter the password...");
-    </script>
-{% endblock %}
+            let password2 = document.getElementById("id_password2");
+            password2.setAttribute("placeholder", "Enter the password...");
+        </script>
+    </body>
+</html>
